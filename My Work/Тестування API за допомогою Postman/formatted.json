@@ -1,0 +1,659 @@
+{
+    "info": {
+        "_postman_id": "1f4fb502-3ff5-4c4d-ad4d-7bf9df641490",
+        "name": "useritest",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "26533860"
+    },
+    "item": [
+        {
+            "name": "user1",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"name\":\"svitlana\",\r\n \"age\":30,\r\n \"gender\":\"female\",\r\n \"city\":\"Poltava\"}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users",
+                    "protocol": "https",
+                    "host": [
+                        "em",
+                        "staging",
+                        "api",
+                        "onereach",
+                        "ai"
+                    ],
+                    "path": [
+                        "http",
+                        "1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+                        "users"
+                    ],
+                    "query": [
+                        {
+                            "key": "id",
+                            "value": "",
+                            "disabled": true
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "test user 1",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Status code is 200\", function () {\r",
+                            "    pm.response.to.have.status(200);\r",
+                            "});\r",
+                            "pm.test(\"varify that age equals 30\", function () {\r",
+                            "    var jsonData = pm.response.json();\r",
+                            "    pm.expect(jsonData.age).to.eql(30);\r",
+                            "pm.test(\"Body matches string name\", function () {\r",
+                            "    pm.expect(pm.response.text()).to.include(\"name\");\r",
+                            "pm.test(\"Body is correct name\", function () {\r",
+                            "    pm.response.to.have.body(\"name\");\r",
+                            "\r",
+                            "    pm.test(\"verify that name equals Svitlana\", function () {\r",
+                            "        var jsonData = pm.response.json();\r",
+                            "        pm.expect(jsonData.name).to.eql(Svitlana);\r",
+                            "pm.test(\"Response time is less than 200ms (50)\", function () {\r",
+                            "    pm.expect(pm.response.responseTime).to.be.below(50);\r",
+                            "pm.test(\"Content-Type is present application/json\", function () {\r",
+                            "    pm.response.to.have.header(\"application/json\");});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"name\":\"svitlana\",\r\n \"age\":30,\r\n \"gender\":\"female\",\r\n \"city\":\"Poltava\"}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users",
+                    "protocol": "https",
+                    "host": [
+                        "em",
+                        "staging",
+                        "api",
+                        "onereach",
+                        "ai"
+                    ],
+                    "path": [
+                        "http",
+                        "1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+                        "users"
+                    ],
+                    "query": [
+                        {
+                            "key": "id",
+                            "value": "",
+                            "disabled": true
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "user2",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"age\": 30,\r\n    \"city\": \"Poltava\",\r\n    \"gender\": \"female\",\r\n    \"name\": \"svitlana\",\r\n    \"id\": \"7b83f8e8-bef5-4071-ad33-762590265195\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id=\"7b83f8e8-bef5-4071-ad33-762590265195\"",
+                    "protocol": "https",
+                    "host": [
+                        "em",
+                        "staging",
+                        "api",
+                        "onereach",
+                        "ai"
+                    ],
+                    "path": [
+                        "http",
+                        "1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+                        "users"
+                    ],
+                    "query": [
+                        {
+                            "key": "id",
+                            "value": "\"7b83f8e8-bef5-4071-ad33-762590265195\""
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "testuser2",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Body is correct data \", function () {\r",
+                            "    pm.response.to.have.body(\"data body\");\r",
+                            "});\r",
+                            "pm.test(\"Body matches string gender\"  , function () {\r",
+                            "    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"age\": 30,\r\n    \"city\": \"Poltava\",\r\n    \"gender\": \"female\",\r\n    \"name\": \"svitlana\",\r\n    \"id\": \"7b83f8e8-bef5-4071-ad33-762590265195\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id=\"7b83f8e8-bef5-4071-ad33-762590265195\"",
+                    "protocol": "https",
+                    "host": [
+                        "em",
+                        "staging",
+                        "api",
+                        "onereach",
+                        "ai"
+                    ],
+                    "path": [
+                        "http",
+                        "1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+                        "users"
+                    ],
+                    "query": [
+                        {
+                            "key": "id",
+                            "value": "\"7b83f8e8-bef5-4071-ad33-762590265195\""
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "test user 2",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Body matches string city\", function () {\r",
+                            "    pm.expect(pm.response.text()).to.include(\"city\");\r",
+                            "pm.test(\"verify that age equals 30\", function () {\r",
+                            "    var jsonData = pm.response.json();\r",
+                            "    pm.expect(jsonData.age).to.eql(30);\r",
+                            "\r",
+                            "    pm.test(\"Body is correct name\", function () {\r",
+                            "        pm.response.to.have.body(\"name\");\r",
+                            "\r",
+                            "        pm.test(\"verify that name equals Svitlana\", function () {\r",
+                            "            pm.expect(pm.response.text()).to.include(\"name Svitlana\");\r",
+                            "        });\r",
+                            "        pm.test(\"Status code name has string gender\", function () {\r",
+                            "            pm.response.to.have.status(\"gender\");\r",
+                            "        });\r",
+                            "    });\r",
+                            "});\r",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"age\": 30,\r\n    \"city\": \"Poltava\",\r\n    \"gender\": \"female\",\r\n    \"name\": \"svitlana\",\r\n    \"id\": \"7b83f8e8-bef5-4071-ad33-762590265195\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id=\"7b83f8e8-bef5-4071-ad33-762590265195\"",
+                    "protocol": "https",
+                    "host": [
+                        "em",
+                        "staging",
+                        "api",
+                        "onereach",
+                        "ai"
+                    ],
+                    "path": [
+                        "http",
+                        "1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+                        "users"
+                    ],
+                    "query": [
+                        {
+                            "key": "id",
+                            "value": "\"7b83f8e8-bef5-4071-ad33-762590265195\""
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "patch user",
+            "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"gender\": \"female\",\r\n    \"city\": \"Poltava\",\r\n    \"name\": \"svitlana\",\r\n    \"id\": \"7b83f8e8-bef5-4071-ad33-762590265195\",\r\n    \"age\": 30\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users",
+                    "protocol": "https",
+                    "host": [
+                        "em",
+                        "staging",
+                        "api",
+                        "onereach",
+                        "ai"
+                    ],
+                    "path": [
+                        "http",
+                        "1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+                        "users"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "patch user 1 test",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"verify that age equal 30\", function () {\r",
+                            "    var jsonData = pm.response.json();\r",
+                            "    pm.expect(jsonData.age).to.eql(30);\r",
+                            "pm.test(\"Body matches string age\", function () {\r",
+                            "    pm.expect(pm.response.text()).to.include(\"age\");\r",
+                            "});\r",
+                            "});\r",
+                            "pm.test(\"Body is correct name\", function () {\r",
+                            "    pm.response.to.have.body(\"name\");\r",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"gender\": \"female\",\r\n    \"city\": \"Poltava\",\r\n    \"name\": \"svitlana\",\r\n    \"id\": \"7b83f8e8-bef5-4071-ad33-762590265195\",\r\n    \"age\": 30\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users",
+                    "protocol": "https",
+                    "host": [
+                        "em",
+                        "staging",
+                        "api",
+                        "onereach",
+                        "ai"
+                    ],
+                    "path": [
+                        "http",
+                        "1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+                        "users"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "patch user test",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Body matches string gender\", function () {\r",
+                            "    pm.expect(pm.response.text()).to.include(\"genger\");\r",
+                            "pm.test(\"verify that ade equals 30\", function () {\r",
+                            "    var jsonData = pm.response.json();\r",
+                            "    pm.expect(jsonData.age).to.eql(30);\r",
+                            "});\r",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"gender\": \"female\",\r\n    \"city\": \"Poltava\",\r\n    \"name\": \"svitlana\",\r\n    \"id\": \"7b83f8e8-bef5-4071-ad33-762590265195\",\r\n    \"age\": 30\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users",
+                    "protocol": "https",
+                    "host": [
+                        "em",
+                        "staging",
+                        "api",
+                        "onereach",
+                        "ai"
+                    ],
+                    "path": [
+                        "http",
+                        "1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+                        "users"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "patchtest",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "\r",
+                            "pm.test(\"Status code is 200\", function () {\r",
+                            "    pm.response.to.have.status(200);\r",
+                            "});\r",
+                            "pm.test(\"Body is correct\", function () {\r",
+                            "    pm.response.to.have.body(\"age\");\r",
+                            "\r",
+                            "    pm.test(\"verify that age equals 3\", function () {\r",
+                            "        var jsonData = pm.response.json();\r",
+                            "        pm.expect(jsonData.age).to.eql(30);\r",
+                            "\r",
+                            "        pm.test(\"Body is correct\", function () {\r",
+                            "            pm.response.to.have.body(\"response_body_string\");\r",
+                            "        });\r",
+                            "        pm.test(\"Body matches string name\", function () {\r",
+                            "            pm.expect(pm.response.text()).to.include(\"name\");\r",
+                            "        });\r",
+                            "    });\r",
+                            "\r",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"gender\": \"female\",\r\n    \"city\": \"Poltava\",\r\n    \"name\": \"svitlana\",\r\n    \"id\": \"7b83f8e8-bef5-4071-ad33-762590265195\",\r\n    \"age\": 30\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users",
+                    "protocol": "https",
+                    "host": [
+                        "em",
+                        "staging",
+                        "api",
+                        "onereach",
+                        "ai"
+                    ],
+                    "path": [
+                        "http",
+                        "1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+                        "users"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "delete user",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \r\n    \"city\": \"Poltava\",\r\n    \"gender\": \"female\",\r\n    \"name\": \"svitlana\",\r\n    \"id\": \"7f0250df-2e6f-42e5-a79e-7ca06bbad3d6\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id=7f0250df-2e6f-42e5-a79e-7ca06bbad3d6",
+                    "protocol": "https",
+                    "host": [
+                        "em",
+                        "staging",
+                        "api",
+                        "onereach",
+                        "ai"
+                    ],
+                    "path": [
+                        "http",
+                        "1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+                        "users"
+                    ],
+                    "query": [
+                        {
+                            "key": "id",
+                            "value": "7f0250df-2e6f-42e5-a79e-7ca06bbad3d6"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "delete user  test",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Body matches string name\", function () {\r",
+                            "    pm.expect(pm.response.text()).to.include(\"name\");\r",
+                            "\r",
+                            "    pm.test(\"verify that ade equals 30\", function () {\r",
+                            "        var jsonData = pm.response.json();\r",
+                            "        pm.expect(jsonData.age).to.eql(30);\r",
+                            "    });\r",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \r\n    \"city\": \"Poltava\",\r\n    \"gender\": \"female\",\r\n    \"name\": \"svitlana\",\r\n    \"id\": \"7f0250df-2e6f-42e5-a79e-7ca06bbad3d6\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id=7f0250df-2e6f-42e5-a79e-7ca06bbad3d6",
+                    "protocol": "https",
+                    "host": [
+                        "em",
+                        "staging",
+                        "api",
+                        "onereach",
+                        "ai"
+                    ],
+                    "path": [
+                        "http",
+                        "1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+                        "users"
+                    ],
+                    "query": [
+                        {
+                            "key": "id",
+                            "value": "7f0250df-2e6f-42e5-a79e-7ca06bbad3d6"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "deletetest",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Status code is 200\", function () {\r",
+                            "    pm.response.to.have.status(200);\r",
+                            "});\r",
+                            "pm.test(\"verify id\", function () {\r",
+                            "    var jsonData = pm.response.json();\r",
+                            "    pm.expect(jsonData.id).to.eql(0);\r",
+                            "pm.test(\"Body matches string city\" , function () {\r",
+                            "    pm.expect(pm.response.text()).to.include(\"city\");\r",
+                            "pm.test(\"Content-Type is present charset=utf-8 \", function () {\r",
+                            "    pm.response.to.have.header(\"charset=utf-8\");\r",
+                            "});\r",
+                            "});\r",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \r\n    \"city\": \"Poltava\",\r\n    \"gender\": \"female\",\r\n    \"name\": \"svitlana\",\r\n    \"id\": \"7f0250df-2e6f-42e5-a79e-7ca06bbad3d6\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id=7f0250df-2e6f-42e5-a79e-7ca06bbad3d6",
+                    "protocol": "https",
+                    "host": [
+                        "em",
+                        "staging",
+                        "api",
+                        "onereach",
+                        "ai"
+                    ],
+                    "path": [
+                        "http",
+                        "1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+                        "users"
+                    ],
+                    "query": [
+                        {
+                            "key": "id",
+                            "value": "7f0250df-2e6f-42e5-a79e-7ca06bbad3d6"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ],
+    "variable": [
+        {
+            "key": "id",
+            "value": "id"
+        },
+        {
+            "key": "\"id\": \"0d1fbb9f-0d8a-4179-be33-0b88b803b730\"",
+            "value": "}"
+        },
+        {
+            "key": "{id",
+            "value": "\"0d1fbb9f-0d8a-4179-be33-0b88b803b730\""
+        }
+    ]
+}
